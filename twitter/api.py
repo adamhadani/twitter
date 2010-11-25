@@ -105,6 +105,9 @@ class TwitterCall(object):
                 secure=self.secure)
 
     def __call__(self, **kwargs):
+        # Ignore None arguments
+        kwargs = dict(filter(lambda i: i[1] is not None, kwargs.iteritems()))
+
         # Build the uri.
         uriparts = []
         for uripart in self.uriparts:
